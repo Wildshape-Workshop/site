@@ -1,6 +1,8 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -8,44 +10,112 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <ViewTransitions />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  @import url("../styles/variables.css");
+
+  @font-face {
+    font-family: "Sarcastic";
+    src: url("/fonts/SarcasticInline-Regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Rockwell";
+    src: url("/fonts/Rockwell.woff2") format("woff2");
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  html,
+  body {
+    background-color: var(--page-background);
+    font-family: var(--body-font);
+    color: var(--text-color);
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+    font-weight: normal;
+    font-style: normal;
+    overflow-wrap: break-word;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(3.125rem, 5.774vw + 1.631rem, 6.25rem);
+  }
+
+  h2 {
+    font-size: clamp(2.813rem, 3.464vw + 1.916rem, 4.688rem);
+  }
+
+  h3 {
+    font-size: clamp(2.5rem, 3.464vw + 1.604rem, 4.375rem);
+  }
+
+  h4 {
+    font-size: clamp(2.188rem, 3.464vw + 1.291rem, 4.063rem);
+  }
+
+  h5 {
+    font-size: clamp(1.875rem, 3.464vw + 0.979rem, 3.75rem);
+  }
+
+  h6 {
+    font-size: clamp(1.563rem, 3.464vw + 0.666rem, 3.438rem);
+  }
+
+  p,
+  span {
+    overflow-wrap: break-word;
+    letter-spacing: 0.05rem;
+    font-size: clamp(0.875rem, 0.462vw + 0.755rem, 1.125rem);
+    line-height: clamp(1.125rem, -0.023vw + 1.143rem, 1.138rem);
+  }
 </style>

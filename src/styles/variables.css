@@ -1,0 +1,28 @@
+:root {
+  --dark-green: hsl(120, 44%, 13%);
+  --light-green: hsl(155, 36%, 29%);
+  --gold: hsl(46, 58%, 50%);
+  --mint: hsl(151, 18%, 53%);
+
+  --page-background: var(--dark-green);
+  --text-color: #fff;
+  --button-background: var(--page-background);
+  --button-text-color: var(--gold);
+  --button-text-color-hover: var(--dark-green);
+  --button-background-hover: var(--gold);
+  --heading-color: var(--gold);
+  --link-color: var(--gold);
+  --link-color-hover: var(--dark-green);
+  --link-background-hover: var(--gold);
+
+  --heading-font: "Sarcastic", serif;
+  --body-font: "Rockwell", serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+}
