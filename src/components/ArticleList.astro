@@ -20,7 +20,9 @@ const { articles, ctaLabel = "Read more" } = Astro.props;
             <span class="tag">{article.tag}</span>
           </div>
           <div class="body">
-            <h3>{article.title}</h3>
+            <h3 transition:name={`article-title-${article.slug}`}>
+              {article.title}
+            </h3>
             <p>{article.excerpt}</p>
             <span class="cta">
               {ctaLabel}

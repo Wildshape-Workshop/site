@@ -15,6 +15,36 @@ const article = getArticle(slug!);
 if (!article) {
   return Astro.redirect("/blog");
 }
+
+const revealAfterMorph = {
+  forwards: {
+    old: {
+      name: "wsw-fade-out",
+      duration: "0.12s",
+      fillMode: "both",
+    },
+    new: {
+      name: "wsw-fade-up-in",
+      duration: "0.36s",
+      delay: "0.24s",
+      easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      fillMode: "both",
+    },
+  },
+  backwards: {
+    old: {
+      name: "wsw-fade-out",
+      duration: "0.12s",
+      fillMode: "both",
+    },
+    new: {
+      name: "wsw-fade-up-in",
+      duration: "0.24s",
+      easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      fillMode: "both",
+    },
+  },
+};
 ---
 
 <BaseLayout
@@ -23,23 +53,25 @@ if (!article) {
 >
   <article>
     <div class="inner">
-      <a href="/blog" class="back">
+      <a href="/blog" class="back" transition:animate={revealAfterMorph}>
         <Icon name="arrow-left" size={12} class="back-icon" />
         All articles
       </a>
 
-      <div class="meta">
+      <div class="meta" transition:animate={revealAfterMorph}>
         <time>{article.date}</time>
         <span class="tag">{article.tag}</span>
       </div>
 
-      <h1>{article.title}</h1>
+      <h1 transition:name={`article-title-${article.slug}`}>
+        {article.title}
+      </h1>
 
-      <div class="content">
+      <div class="content" transition:animate={revealAfterMorph}>
         {article.content.map((paragraph) => <p>{paragraph}</p>)}
       </div>
 
-      <footer>
+      <footer transition:animate={revealAfterMorph}>
         <a href="/blog" class="more">
           Read more articles
           <Icon name="arrow-right" size={12} />
@@ -52,7 +84,7 @@ if (!article) {
 <style>
   article {
     background-color: var(--color-background);
-    padding-block-start: var(--space-4xl);
+    padding-block-start: var(--space-l);
     padding-block-end: var(--space-3xl);
   }
 

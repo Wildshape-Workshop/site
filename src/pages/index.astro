@@ -83,13 +83,13 @@ const featured = articles.slice(0, 3);
   .hero {
     position: relative;
     overflow: hidden;
-    min-height: 100dvh;
+    min-height: calc(100dvh - var(--nav-height));
     background-color: var(--color-primary);
     color: var(--color-primary-foreground);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-block-start: var(--space-4xl);
+    padding-block-start: var(--space-l);
     padding-block-end: var(--space-l);
     padding-inline: var(--gutter-x);
   }

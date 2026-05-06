@@ -61,6 +61,8 @@
 
   --gutter-x: clamp(1.5rem, 0.7rem + 4vw, 3rem);
 
+  --nav-height: calc(2.5rem + var(--space-s) * 2);
+
   --radius: 0;
 
   --max-width-prose: 65ch;
