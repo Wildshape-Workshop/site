@@ -3,9 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleList from "../components/ArticleList.astro";
 import Icon from "../components/Icon.astro";
 import Logo from "../components/Logo.astro";
-import { articles } from "../data/articles.ts";
+import { getCollection } from "astro:content";
 
-const featured = articles.slice(0, 3);
+const featured = (await getCollection("blog"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Wildshape Workshop">
@@ -44,17 +46,21 @@ const featured = articles.slice(0, 3);
     <p class="author">— Founder, Wildshape Workshop</p>
   </section>
 
-  <section id="workshop" class="dispatches">
-    <header>
-      <div>
-        <p class="eyebrow">Dispatches</p>
-        <h2>From the<br />workshop</h2>
-      </div>
-      <p class="volume">Vol. I — 2026</p>
-    </header>
+  {
+    featured.length > 0 && (
+      <section id="workshop" class="dispatches">
+        <header>
+          <div>
+            <p class="eyebrow">Dispatches</p>
+            <h2>From the<br />workshop</h2>
+          </div>
+          <p class="volume">Vol. I — 2026</p>
+        </header>
 
-    <ArticleList articles={featured} />
-  </section>
+        <ArticleList articles={featured} />
+      </section>
+    )
+  }
 
   <section class="cta">
     <div class="inner">

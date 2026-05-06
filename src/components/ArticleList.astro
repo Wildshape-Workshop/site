@@ -1,29 +1,37 @@
 ---
 import Icon from "./Icon.astro";
-import type { Article } from "../data/articles.ts";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  articles: Pick<Article, "slug" | "date" | "tag" | "title" | "excerpt">[];
+  articles: CollectionEntry<"blog">[];
   ctaLabel?: string;
 }
 
 const { articles, ctaLabel = "Read more" } = Astro.props;
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <ul>
   {
     articles.map((article) => (
       <li>
-        <a href={`/blog/${article.slug}`}>
+        <a href={`/blog/${article.id}`}>
           <div class="meta">
-            <time>{article.date}</time>
-            <span class="tag">{article.tag}</span>
+            <time datetime={article.data.date.toISOString().slice(0, 10)}>
+              {dateFormatter.format(article.data.date)}
+            </time>
+            <span class="tag">{article.data.tag}</span>
           </div>
           <div class="body">
-            <h3 transition:name={`article-title-${article.slug}`}>
-              {article.title}
+            <h3 transition:name={`article-title-${article.id}`}>
+              {article.data.title}
             </h3>
-            <p>{article.excerpt}</p>
+            <p>{article.data.excerpt}</p>
             <span class="cta">
               {ctaLabel}
               <Icon name="arrow-right" size={11} />
