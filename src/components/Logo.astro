@@ -1,0 +1,46 @@
+---
+import LogoSvg from "../assets/logo.svg";
+
+type Variant = "light" | "dark";
+
+interface Props {
+  variant: Variant;
+  class?: string;
+  width?: number | string;
+  height?: number | string;
+  "aria-hidden"?: boolean | "true" | "false";
+}
+
+const {
+  variant,
+  class: className,
+  width,
+  height,
+  "aria-hidden": ariaHidden = "true",
+} = Astro.props;
+---
+
+<LogoSvg
+  class:list={["logo", variant, className]}
+  width={width}
+  height={height}
+  aria-hidden={ariaHidden}
+/>
+
+<style>
+  .logo.light {
+    color: var(--color-primary-foreground);
+  }
+
+  .logo.dark {
+    color: var(--color-secondary-foreground);
+  }
+
+  .logo :global(path[stroke]) {
+    stroke: currentColor;
+  }
+
+  .logo :global(path:not([stroke])) {
+    fill: currentColor;
+  }
+</style>

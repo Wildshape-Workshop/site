@@ -1,0 +1,132 @@
+---
+import Icon from "./Icon.astro";
+import type { Article } from "../data/articles.ts";
+
+interface Props {
+  articles: Pick<Article, "slug" | "date" | "tag" | "title" | "excerpt">[];
+  ctaLabel?: string;
+}
+
+const { articles, ctaLabel = "Read more" } = Astro.props;
+---
+
+<ul>
+  {
+    articles.map((article) => (
+      <li>
+        <a href={`/blog/${article.slug}`}>
+          <div class="meta">
+            <time>{article.date}</time>
+            <span class="tag">{article.tag}</span>
+          </div>
+          <div class="body">
+            <h3>{article.title}</h3>
+            <p>{article.excerpt}</p>
+            <span class="cta">
+              {ctaLabel}
+              <Icon name="arrow-right" size={11} />
+            </span>
+          </div>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+  }
+
+  li {
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  li:first-child {
+    border-block-start: none;
+  }
+
+  a {
+    display: grid;
+    gap: var(--space-s);
+    padding-block: var(--space-l);
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-s);
+    padding-block-start: 0.125rem;
+  }
+
+  time,
+  .tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+  }
+
+  time {
+    color: var(--color-muted-foreground);
+  }
+
+  .tag {
+    color: var(--color-accent);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-h4);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+    margin-block-end: var(--space-s);
+    transition: color var(--transition-base);
+  }
+
+  a:hover h3 {
+    color: var(--color-accent);
+  }
+
+  p {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    margin-block-end: var(--space-s);
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+    color: var(--color-muted-foreground);
+    transition:
+      color var(--transition-base),
+      gap var(--transition-base);
+  }
+
+  a:hover .cta {
+    color: var(--color-foreground);
+    gap: var(--space-xs);
+  }
+
+  @container (min-width: 36rem) {
+    a {
+      grid-template-columns: 11.25rem 1fr;
+      gap: var(--space-xl);
+      padding-block: var(--space-xl);
+    }
+
+    .meta {
+      flex-direction: column;
+      gap: var(--space-3xs);
+    }
+  }
+</style>

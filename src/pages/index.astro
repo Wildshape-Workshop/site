@@ -1,0 +1,297 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleList from "../components/ArticleList.astro";
+import Icon from "../components/Icon.astro";
+import Logo from "../components/Logo.astro";
+import { articles } from "../data/articles.ts";
+
+const featured = articles.slice(0, 3);
+---
+
+<BaseLayout title="Wildshape Workshop">
+  <section id="top" class="hero">
+    <div class="content">
+      <h1>
+        Lovingly
+        <em> making things </em>
+        by hand &amp; machine.
+      </h1>
+
+      <div class="subtitle">
+        <p>
+          Wildshape Workshop is a small fabrication studio in Tilburg. We cut,
+          carve, print, and burn. Every project starts with a problem and ends
+          with something real you can hold.
+        </p>
+      </div>
+      <div class="scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <Icon name="arrow-down" size={12} />
+      </div>
+    </div>
+
+
+    <Logo variant="light" class="watermark" aria-hidden="true" />
+  </section>
+
+  <section class="quote">
+    <blockquote>
+      "We started in a garage with a second-hand table saw and a borrowed
+      laptop. Seven years later the garage is bigger and the laptop is new.
+      Everything else is still the same: one project, done well, at a time."
+    </blockquote>
+    <p class="author">— Founder, Wildshape Workshop</p>
+  </section>
+
+  <section id="workshop" class="dispatches">
+    <header>
+      <div>
+        <p class="eyebrow">Dispatches</p>
+        <h2>From the<br />workshop</h2>
+      </div>
+      <p class="volume">Vol. I — 2026</p>
+    </header>
+
+    <ArticleList articles={featured} />
+  </section>
+
+  <section class="cta">
+    <div class="inner">
+      <p class="eyebrow">Available now</p>
+      <h2>
+        Ready-made pieces<br />
+        in the <em>Shop.</em>
+      </h2>
+      <p class="body">
+        Not every piece needs a commission. Browse our Etsy shop for objects we
+        have made, finished, and listed — ready to ship to your door.
+      </p>
+      <a
+        href="https://www.etsy.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button"
+      >
+        Visit the Etsy Shop
+        <Icon name="external-link" size={14} />
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100dvh;
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block-start: var(--space-4xl);
+    padding-block-end: var(--space-l);
+    padding-inline: var(--gutter-x);
+  }
+
+  .hero .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 64rem;
+    padding-block: var(--space-l);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: var(--text-h1);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-tight);
+    margin-block-end: var(--space-l);
+  }
+
+  .hero em {
+    font-style: normal;
+    color: var(--color-accent);
+  }
+
+  .hero .subtitle {
+    border-block-start: 1px solid
+      rgb(from var(--color-primary-foreground) r g b / 0.15);
+    padding-block-start: var(--space-m);
+    max-width: 32rem;
+  }
+
+  .hero .subtitle p {
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-relaxed);
+    color: rgb(from var(--color-primary-foreground) r g b / 0.65);
+  }
+
+  .hero .scroll {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-body-lg);
+    color: var(--color-accent);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero .scroll :global(.icon) {
+    animation: scroll-arrow-float 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scroll-arrow-float {
+    0%,
+    100% {
+      transform: translateY(-3px);
+    }
+    50% {
+      transform: translateY(3px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .scroll :global(.icon) {
+      animation: none;
+    }
+  }
+
+  .hero :global(.watermark) {
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: clamp(25rem, 60cqw, 56.25rem);
+    height: auto;
+    transform: translateY(-50%);
+    opacity: 0.15;
+    filter: invert(1);
+    pointer-events: none;
+  }
+
+  .quote {
+    background-color: var(--color-card);
+    color: var(--color-card-foreground);
+    padding-block: var(--space-3xl);
+    padding-inline: var(--gutter-x);
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  .quote blockquote {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-h4);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+    color: rgb(from var(--color-foreground) r g b / 0.75);
+    max-width: var(--max-width-narrow);
+    margin-inline: auto;
+  }
+
+  .quote .author {
+    margin-block-start: var(--space-m);
+    margin-inline: auto;
+    max-width: var(--max-width-narrow);
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-muted-foreground);
+  }
+
+  .dispatches {
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+    padding-block: var(--space-3xl);
+    padding-inline: var(--gutter-x);
+  }
+
+  .dispatches header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    border-block-end: 1px solid var(--color-border);
+    padding-block-end: var(--space-l);
+    margin-block-end: var(--space-2xl);
+  }
+
+  .dispatches .eyebrow {
+    margin-block-end: var(--space-2xs);
+  }
+
+  .dispatches h2 {
+    font-size: var(--text-h2);
+  }
+
+  .dispatches .volume {
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+    color: var(--color-muted-foreground);
+  }
+
+  @media (min-width: 48rem) {
+    .dispatches header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  .cta {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    padding-block: var(--space-4xl);
+    padding-inline: var(--gutter-x);
+  }
+
+  .cta .inner {
+    max-width: var(--max-width-narrow);
+  }
+
+  .cta .eyebrow {
+    color: rgb(from var(--color-primary-foreground) r g b / 0.4);
+    margin-block-end: var(--space-l);
+  }
+
+  .cta h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-display);
+    margin-block-end: var(--space-l);
+  }
+
+  .cta em {
+    font-style: normal;
+    color: var(--color-accent);
+  }
+
+  .cta .body {
+    color: rgb(from var(--color-primary-foreground) r g b / 0.6);
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-relaxed);
+    max-width: 32rem;
+    margin-block-end: var(--space-xl);
+  }
+
+  .cta .button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+    font-weight: var(--weight-medium);
+    padding-block: var(--space-s);
+    padding-inline: var(--space-l);
+    transition: opacity var(--transition-base);
+  }
+
+  .cta .button:hover {
+    opacity: 0.85;
+  }
+</style>

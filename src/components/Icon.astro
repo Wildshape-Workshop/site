@@ -1,0 +1,51 @@
+---
+import ArrowRight from "../assets/icons/arrow-right.svg";
+import ArrowLeft from "../assets/icons/arrow-left.svg";
+import ArrowDown from "../assets/icons/arrow-down.svg";
+import ExternalLink from "../assets/icons/external-link.svg";
+import Menu from "../assets/icons/menu.svg";
+import Close from "../assets/icons/close.svg";
+
+const icons = {
+  "arrow-right": ArrowRight,
+  "arrow-left": ArrowLeft,
+  "arrow-down": ArrowDown,
+  "external-link": ExternalLink,
+  menu: Menu,
+  close: Close,
+} as const;
+
+type IconName = keyof typeof icons;
+
+interface Props {
+  name: IconName;
+  size?: number | string;
+  strokeWidth?: number;
+  class?: string;
+  "aria-hidden"?: boolean;
+}
+
+const {
+  name,
+  size = 16,
+  strokeWidth = 2,
+  class: className,
+  "aria-hidden": ariaHidden = true,
+} = Astro.props;
+
+const IconSvg = icons[name];
+---
+
+<IconSvg
+  width={size}
+  height={size}
+  stroke-width={strokeWidth}
+  class:list={["icon", className]}
+  aria-hidden={ariaHidden}
+/>
+
+<style>
+  .icon {
+    flex-shrink: 0;
+  }
+</style>

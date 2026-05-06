@@ -1,0 +1,48 @@
+---
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import logoUrl from "../assets/logo.svg?url";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Wildshape Workshop is a small fabrication studio in Tilburg. We cut, carve, print, and burn.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={logoUrl} />
+    <link
+      rel="preload"
+      href="/fonts/WorkSans-VariableFont_wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/BarlowCondensed-ExtraBold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,218 @@
+---
+import Icon from "./Icon.astro";
+import Logo from "./Logo.astro";
+---
+
+<header class="nav">
+  <div class="inner">
+    <a href="/" class="brand">
+      <Logo variant="light" aria-hidden="true" />
+      <span class="brand-name">Wildshape Workshop</span>
+    </a>
+
+    <nav class="primary" aria-label="Primary">
+      <a href="/blog">From the workshop</a>
+      <a
+        href="https://www.etsy.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta"
+      >
+        Etsy Shop
+        <Icon name="external-link" size={12} />
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      class="toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="nav-mobile"
+      data-nav-toggle
+    >
+      <span class="icon-open"><Icon name="menu" size={22} /></span>
+      <span class="icon-close"><Icon name="close" size={22} /></span>
+    </button>
+  </div>
+
+  <div id="nav-mobile" class="mobile" hidden>
+    <a href="/blog">From the workshop</a>
+    <a
+      href="https://www.etsy.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="accent"
+    >
+      Etsy Shop
+      <Icon name="external-link" size={16} />
+    </a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-s);
+    padding-inline: var(--gutter-x);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .brand :global(svg) {
+    height: 2.5rem;
+    width: auto;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-body);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-snug);
+  }
+
+  .primary {
+    display: none;
+    align-items: center;
+    gap: var(--space-l);
+  }
+
+  .primary a {
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+    color: rgb(from var(--color-primary-foreground) r g b / 0.6);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .primary a:hover {
+    color: var(--color-primary-foreground);
+  }
+
+  .primary .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+    font-weight: var(--weight-medium);
+    padding-block: var(--space-2xs);
+    padding-inline: var(--space-s);
+    transition: background-color var(--transition-base);
+  }
+
+  .primary .cta:hover {
+    background-color: rgb(from var(--color-accent) r g b / 0.85);
+    color: var(--color-accent-foreground);
+  }
+
+  .toggle {
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-close {
+    display: none;
+  }
+
+  .nav[data-open] .icon-open {
+    display: none;
+  }
+
+  .nav[data-open] .icon-close {
+    display: inline-flex;
+  }
+
+  .mobile {
+    position: absolute;
+    inset: 100% 0 auto 0;
+    background-color: var(--color-primary);
+    border-block-start: 1px solid
+      rgb(from var(--color-primary-foreground) r g b / 0.1);
+    padding-block: var(--space-l);
+    padding-inline: var(--gutter-x);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .mobile[hidden] {
+    display: none;
+  }
+
+  .mobile a {
+    font-family: var(--font-display);
+    font-size: var(--text-h6);
+    color: rgb(from var(--color-primary-foreground) r g b / 0.8);
+  }
+
+  .mobile .accent {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 48rem) {
+    .inner {
+      padding-inline: var(--space-2xl);
+    }
+
+    .primary {
+      display: flex;
+    }
+
+    .toggle {
+      display: none;
+    }
+
+    .mobile {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".nav");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+  const panel = document.getElementById("nav-mobile");
+
+  if (header && toggle && panel) {
+    toggle.addEventListener("click", () => {
+      const isOpen = header.hasAttribute("data-open");
+      if (isOpen) {
+        header.removeAttribute("data-open");
+        toggle.setAttribute("aria-expanded", "false");
+        panel.setAttribute("hidden", "");
+      } else {
+        header.setAttribute("data-open", "");
+        toggle.setAttribute("aria-expanded", "true");
+        panel.removeAttribute("hidden");
+      }
+    });
+
+    panel.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        header.removeAttribute("data-open");
+        toggle.setAttribute("aria-expanded", "false");
+        panel.setAttribute("hidden", "");
+      });
+    });
+  }
+</script>
