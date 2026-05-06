@@ -64,7 +64,9 @@ import Logo from "./Logo.astro";
     align-items: center;
     justify-content: space-between;
     padding-block: var(--space-s);
-    padding-inline: var(--gutter-x);
+    padding-inline:
+      max(var(--gutter-x), env(safe-area-inset-left))
+      max(var(--gutter-x), env(safe-area-inset-right));
   }
 
   .brand {
@@ -97,6 +99,7 @@ import Logo from "./Logo.astro";
     font-size: var(--text-body-sm);
     color: rgb(from var(--color-primary-foreground) r g b / 0.6);
     letter-spacing: var(--tracking-wide);
+    transition: color var(--transition-base);
   }
 
   .primary a:hover {
@@ -112,7 +115,9 @@ import Logo from "./Logo.astro";
     font-weight: var(--weight-medium);
     padding-block: var(--space-2xs);
     padding-inline: var(--space-s);
-    transition: background-color var(--transition-base);
+    transition:
+      background-color var(--transition-base),
+      transform var(--transition-fast);
   }
 
   .primary .cta:hover {
@@ -120,11 +125,23 @@ import Logo from "./Logo.astro";
     color: var(--color-accent-foreground);
   }
 
+  .primary .cta:active {
+    transform: translateY(1px);
+  }
+
+  @media (pointer: coarse) {
+    .primary .cta {
+      min-height: 44px;
+    }
+  }
+
   .toggle {
     color: inherit;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .icon-close {
@@ -146,7 +163,9 @@ import Logo from "./Logo.astro";
     border-block-start: 1px solid
       rgb(from var(--color-primary-foreground) r g b / 0.1);
     padding-block: var(--space-l);
-    padding-inline: var(--gutter-x);
+    padding-inline:
+      max(var(--gutter-x), env(safe-area-inset-left))
+      max(var(--gutter-x), env(safe-area-inset-right));
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
@@ -160,6 +179,9 @@ import Logo from "./Logo.astro";
     font-family: var(--font-display);
     font-size: var(--text-h6);
     color: rgb(from var(--color-primary-foreground) r g b / 0.8);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 
   .mobile .accent {
@@ -171,7 +193,9 @@ import Logo from "./Logo.astro";
 
   @media (min-width: 48rem) {
     .inner {
-      padding-inline: var(--space-2xl);
+      padding-inline:
+        max(var(--space-2xl), env(safe-area-inset-left))
+        max(var(--space-2xl), env(safe-area-inset-right));
     }
 
     .primary {
@@ -192,27 +216,39 @@ import Logo from "./Logo.astro";
   const header = document.querySelector<HTMLElement>(".nav");
   const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
   const panel = document.getElementById("nav-mobile");
+  const inertTargets = document.querySelectorAll<HTMLElement>(
+    "main, body > footer",
+  );
+
+  function open() {
+    if (!header || !toggle || !panel) return;
+    header.setAttribute("data-open", "");
+    toggle.setAttribute("aria-expanded", "true");
+    panel.removeAttribute("hidden");
+    inertTargets.forEach((el) => el.setAttribute("inert", ""));
+    panel.querySelector<HTMLElement>("a")?.focus();
+  }
+
+  function close() {
+    if (!header || !toggle || !panel) return;
+    header.removeAttribute("data-open");
+    toggle.setAttribute("aria-expanded", "false");
+    panel.setAttribute("hidden", "");
+    inertTargets.forEach((el) => el.removeAttribute("inert"));
+    toggle.focus();
+  }
 
   if (header && toggle && panel) {
     toggle.addEventListener("click", () => {
-      const isOpen = header.hasAttribute("data-open");
-      if (isOpen) {
-        header.removeAttribute("data-open");
-        toggle.setAttribute("aria-expanded", "false");
-        panel.setAttribute("hidden", "");
-      } else {
-        header.setAttribute("data-open", "");
-        toggle.setAttribute("aria-expanded", "true");
-        panel.removeAttribute("hidden");
-      }
+      header.hasAttribute("data-open") ? close() : open();
     });
 
     panel.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        header.removeAttribute("data-open");
-        toggle.setAttribute("aria-expanded", "false");
-        panel.setAttribute("hidden", "");
-      });
+      link.addEventListener("click", close);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && header.hasAttribute("data-open")) close();
     });
   }
 </script>

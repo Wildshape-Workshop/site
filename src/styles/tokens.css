@@ -70,6 +70,10 @@
   --max-width-content: 72rem;
   --max-width-wide: 80rem;
 
-  --transition-fast: 150ms ease;
-  --transition-base: 200ms ease;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --transition-fast: 150ms var(--ease-out);
+  --transition-base: 200ms var(--ease-out);
 }

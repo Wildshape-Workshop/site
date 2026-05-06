@@ -109,14 +109,19 @@ const { articles, ctaLabel = "Read more" } = Astro.props;
     font-family: var(--font-mono);
     font-size: var(--text-body-sm);
     color: var(--color-muted-foreground);
-    transition:
-      color var(--transition-base),
-      gap var(--transition-base);
+    transition: color var(--transition-base);
+  }
+
+  .cta :global(.icon) {
+    transition: transform var(--transition-base);
   }
 
   a:hover .cta {
     color: var(--color-foreground);
-    gap: var(--space-xs);
+  }
+
+  a:hover .cta :global(.icon) {
+    transform: translateX(4px);
   }
 
   @container (min-width: 36rem) {

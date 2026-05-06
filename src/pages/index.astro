@@ -13,7 +13,7 @@ const featured = articles.slice(0, 3);
     <div class="content">
       <h1>
         Lovingly
-        <em> making things </em>
+        <em>making things</em>
         by hand &amp; machine.
       </h1>
 
@@ -36,9 +36,10 @@ const featured = articles.slice(0, 3);
 
   <section class="quote">
     <blockquote>
-      "We started in a garage with a second-hand table saw and a borrowed
+      &ldquo;We started in a garage with a second-hand table saw and a borrowed
       laptop. Seven years later the garage is bigger and the laptop is new.
-      Everything else is still the same: one project, done well, at a time."
+      Everything else is still the same: one project, done well, at a
+      time.&rdquo;
     </blockquote>
     <p class="author">— Founder, Wildshape Workshop</p>
   </section>
@@ -60,7 +61,7 @@ const featured = articles.slice(0, 3);
       <p class="eyebrow">Available now</p>
       <h2>
         Ready-made pieces<br />
-        in the <em>Shop.</em>
+        in the <em>Shop</em>.
       </h2>
       <p class="body">
         Not every piece needs a commission. Browse our Etsy shop for objects we
@@ -254,7 +255,7 @@ const featured = articles.slice(0, 3);
   }
 
   .cta .eyebrow {
-    color: rgb(from var(--color-primary-foreground) r g b / 0.4);
+    color: rgb(from var(--color-primary-foreground) r g b / 0.6);
     margin-block-end: var(--space-l);
   }
 
@@ -288,10 +289,16 @@ const featured = articles.slice(0, 3);
     font-weight: var(--weight-medium);
     padding-block: var(--space-s);
     padding-inline: var(--space-l);
-    transition: opacity var(--transition-base);
+    transition:
+      box-shadow var(--transition-base),
+      transform var(--transition-fast);
   }
 
   .cta .button:hover {
-    opacity: 0.85;
+    box-shadow: 0 6px 18px rgb(26 43 26 / 0.35);
+  }
+
+  .cta .button:active {
+    transform: translateY(1px);
   }
 </style>
