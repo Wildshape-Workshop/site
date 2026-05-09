@@ -15,7 +15,7 @@ interface Props {
 
 const {
   title,
-  description = "Wildshape Workshop is a one-person fabrication studio in Zwolle, the Netherlands. I blend woodworking, 3D printing, and laser cutting to create dice trays, DM screens, props, and small tools that quietly make your tabletop sessions better.",
+  description = "A one-person fabrication studio in Zwolle, the Netherlands. Handmade dice trays, DM screens, props, and small tools that quietly improve your tabletop sessions.",
   image = "og-default.jpg",
   type = "website",
 } = Astro.props;
@@ -41,6 +41,8 @@ const orgSchemaJSON = JSON.stringify(orgSchema).replace(/</g, "\\u003c");
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Mathijs" />
+    <meta name="publisher" content="Wildshape Workshop" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={logoUrl} />
 
