@@ -15,8 +15,8 @@ const articles = (await getCollection("blog")).sort(
   <div class="page">
     <div class="inner">
       <header>
-        <p class="eyebrow">Dispatches from Zwolle</p>
-        <h1>From the<br />workshop</h1>
+        <p class="eyebrow">Dispatches </p>
+        <h1>From the workshop</h1>
         <p class="intro">
           Notes on tools, techniques, and the problems which get solved. Updated when there is something worth saying, not on a schedule.
         </p>
@@ -57,9 +57,6 @@ const articles = (await getCollection("blog")).sort(
     margin-block-end: var(--space-2xl);
   }
 
-  .eyebrow {
-    margin-block-end: var(--space-s);
-  }
 
   h1 {
     font-size: var(--text-h2);
@@ -76,10 +73,6 @@ const articles = (await getCollection("blog")).sort(
   .empty {
     max-width: var(--max-width-prose);
     padding-block: var(--space-2xl);
-  }
-
-  .empty .eyebrow {
-    margin-block-end: var(--space-s);
   }
 
   .empty-body {

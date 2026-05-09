@@ -8,20 +8,19 @@ import { getCollection } from "astro:content";
 const articles = (await getCollection("blog"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const year = new Date().getFullYear();
+const volume =  year - 2026 + 1;
+
 ---
 
 <BaseLayout title="Wildshape Workshop">
   <section id="top" class="hero">
     <div class="content">
-        <h1>
-          Lovingly
-          <em>making things</em>
-          by hand &amp; machine.
-        </h1>
-
+        <h1>Gear for the <em>table</em>, made by hand &amp; machine.</h1>
         <div class="subtitle">
           <p>
-            Wildshape Workshop is a small fabrication studio in Zwolle, the Netherlands. Combining woodworking, 3D printing, and laser cutting to turn ideas into fun and practical tools to be used in your tabletop sessions.
+              Wildshape Workshop is a one-person fabrication studio in Zwolle, the Netherlands. I blend woodworking, 3D printing, and laser cutting to create dice trays, DM screens, props, and small tools that quietly make your tabletop sessions better.
           </p>
         </div>
 
@@ -50,9 +49,9 @@ const articles = (await getCollection("blog"))
       <header>
         <div>
           <p class="eyebrow">Dispatches</p>
-          <h2>From the<br />workshop</h2>
+          <h2>From the workshop</h2>
+        <p class="volume">Vol. {volume} — {year}</p>
         </div>
-        <p class="volume">Vol. I — 2026</p>
       </header>
 
       <ArticleList articles={articles} />
@@ -102,14 +101,13 @@ const articles = (await getCollection("blog"))
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 64rem;
+    max-width: var(--max-width-content);
     padding-block: var(--space-l);
     position: relative;
     z-index: 1;
   }
 
   .hero h1 {
-    font-size: var(--text-h1);
     margin-block-end: var(--space-l);
   }
 
@@ -121,12 +119,14 @@ const articles = (await getCollection("blog"))
   .hero .subtitle {
     border-block-start: 1px solid var(--color-border-on-primary);
     padding-block-start: var(--space-m);
-    max-width: 32rem;
+    max-width: var(--max-width-prose);
+    text-wrap: balance;
   }
 
   .hero .subtitle p {
-    font-size: var(--text-body-lg);
-    color: var(--color-on-primary-muted);
+    font-size: var(--text-h6);
+    color: var(--color-primary-foreground);
+    margin-bottom: var(--space-s);
   }
 
 .scroll {
@@ -203,9 +203,6 @@ const articles = (await getCollection("blog"))
     margin-block-end: var(--space-2xl);
   }
 
-  .dispatches .eyebrow {
-    margin-block-end: var(--space-2xs);
-  }
 
   .dispatches h2 {
     font-size: var(--text-h2);
