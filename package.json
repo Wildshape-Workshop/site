@@ -15,6 +15,7 @@
     "format:check": "oxfmt --check"
   },
   "dependencies": {
+    "@astrojs/sitemap": "3.7.2",
     "astro": "6.2.2"
   },
   "devDependencies": {
