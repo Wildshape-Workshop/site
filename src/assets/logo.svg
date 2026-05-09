@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" fill-rule="evenodd" stroke-linecap="square" stroke-miterlimit="15" clip-rule="evenodd" viewBox="0 0 542 591">
-    <path fill="none" stroke="#fff" stroke-width="10.42" d="M185.542 146.542v190l84-61 85 67v-199"/>
-    <path d="m223.637 229.542 46.325 46.325 46.484-46.483zM126.542 141.542l64 33v-33zM413.542 136.542l-64 33v-33z"/>
-    <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5" stroke-width="27.08" d="m13.542 350.542 110 150c12.48-9.013 31.679-19.37 52-33 0 0 47.147 25.486 105 109 0 0 77.042-103.916 99-111l45 32 103-165s-17.078-62.453-37.04-118.783c-11.281-31.836-35.96-78.217-35.96-78.217l47-70-77-52-49 45s-58.96-3.04-222 3l-36-42-82 72 45 69z"/>
+    <path fill="none" stroke="#f1ebdb" stroke-width="10.42" d="M185.542 146.542v190l84-61 85 67v-199"/>
+    <path fill="#f1ebdb" d="m223.637 229.542 46.325 46.325 46.484-46.483zM126.542 141.542l64 33v-33zM413.542 136.542l-64 33v-33z"/>
+    <path fill="none" stroke="#f1ebdb" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5" stroke-width="27.08" d="m13.542 350.542 110 150c12.48-9.013 31.679-19.37 52-33 0 0 47.147 25.486 105 109 0 0 77.042-103.916 99-111l45 32 103-165s-17.078-62.453-37.04-118.783c-11.281-31.836-35.96-78.217-35.96-78.217l47-70-77-52-49 45s-58.96-3.04-222 3l-36-42-82 72 45 69z"/>
 </svg>

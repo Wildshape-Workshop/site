@@ -8,12 +8,19 @@ import logoUrl from "../assets/logo.svg?url";
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
 }
 
 const {
   title,
   description = "Wildshape Workshop is a small fabrication studio in Zwolle. We cut, carve, print, and burn.",
+  image = "og-default.jpg",
+  type = "website",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(`/images/${image}`, Astro.site);
 ---
 
 <!doctype html>
@@ -21,8 +28,24 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={logoUrl} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Wildshape Workshop" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageURL} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+
     <link
       rel="preload"
       href="/fonts/WorkSans-VariableFont_wght.ttf"
@@ -37,7 +60,6 @@ const {
       type="font/ttf"
       crossorigin
     />
-    <title>{title}</title>
     <ClientRouter />
   </head>
   <body>
