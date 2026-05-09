@@ -5,7 +5,7 @@ import Icon from "../components/Icon.astro";
 import Logo from "../components/Logo.astro";
 import { getCollection } from "astro:content";
 
-const featured = (await getCollection("blog"))
+const articles = (await getCollection("blog"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 ---
@@ -21,7 +21,7 @@ const featured = (await getCollection("blog"))
 
         <div class="subtitle">
           <p>
-            Wildshape Workshop is a small fabrication studio in Zwolle, the Netherlands. Combining woodworking, 3D printing, and laser cutting to turn ideas into thoughtful, tangible objects.
+            Wildshape Workshop is a small fabrication studio in Zwolle, the Netherlands. Combining woodworking, 3D printing, and laser cutting to turn ideas into fun and practical tools to be used in your tabletop sessions.
           </p>
         </div>
 
@@ -37,17 +37,15 @@ const featured = (await getCollection("blog"))
 
   <section class="quote">
     <blockquote>
-        <p>Born from curiosity and a desire to create beautiful, lasting memories for people. Not confined to a single discipline, but driven to explore every aspect of creation.
-        </p>
         <p>
         The name Wildshape Workshop is a homage to one of my first Dungeons &amp; Dragons characters, who possessed the ability to Wildshape; to transform into something else at will.
-        That’s what I strive to do, day by day.
+        That’s what I strive to do, day by day. Not confined to a single discipline, but driven to explore every aspect of creation.
         </p>
     </blockquote>
     <p class="author">Mathijs</p>
   </section>
 
-  {featured.length > 0 && (
+  {articles.length > 0 && (
     <section id="workshop" class="dispatches">
       <header>
         <div>
@@ -57,7 +55,7 @@ const featured = (await getCollection("blog"))
         <p class="volume">Vol. I — 2026</p>
       </header>
 
-      <ArticleList articles={featured} />
+      <ArticleList articles={articles} />
     </section>
     )}
 
@@ -69,8 +67,7 @@ const featured = (await getCollection("blog"))
         in the <em>Shop</em>.
       </h2>
       <p class="body">
-        Not every piece needs a commission. Browse our Etsy shop for objects we
-        have made, finished, and listed — ready to ship to your door.
+        Browse the Etsy shop for objects I have made, finished, and listed. Ready to ship to your door.
       </p>
       <a
         href="https://www.etsy.com"
@@ -233,7 +230,6 @@ const featured = (await getCollection("blog"))
 
   .cta .eyebrow {
     color: var(--color-on-primary-subtle);
-    margin-block-end: var(--space-l);
   }
 
   .cta h2 {
