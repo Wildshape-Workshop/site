@@ -1,6 +1,5 @@
 ---
 import { ETSY_LINK } from "../constants";
-import Icon from "./Icon.astro";
 import Link from "./Link.astro";
 import Logo from "./Logo.astro";
 ---
@@ -13,30 +12,14 @@ import Logo from "./Logo.astro";
     </a>
 
     <nav class="primary" aria-label="Primary">
-      <a href="/blog">From the workshop</a>
+      <a href="/blog">
+        <span class="label-short">Blog</span>
+        <span class="label-long">From the workshop</span>
+      </a>
       <Link href={ETSY_LINK} target="_blank" class="cta" iconSize={12}>
         Etsy Shop
       </Link>
     </nav>
-
-    <button
-      type="button"
-      class="toggle"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-      aria-controls="nav-mobile"
-      data-nav-toggle
-    >
-      <span class="icon-open"><Icon name="menu" size={22} /></span>
-      <span class="icon-close"><Icon name="close" size={22} /></span>
-    </button>
-  </div>
-
-  <div id="nav-mobile" class="mobile" hidden>
-    <a href="/blog">From the workshop</a>
-    <Link href={ETSY_LINK} target="_blank" class="accent" iconSize={16}>
-      Etsy Shop
-    </Link>
   </div>
 </header>
 
@@ -54,6 +37,7 @@ import Logo from "./Logo.astro";
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-m);
     padding-block: var(--space-s);
     padding-inline:
       max(var(--gutter-x), env(safe-area-inset-left))
@@ -72,23 +56,33 @@ import Logo from "./Logo.astro";
   }
 
   .brand-name {
-    font-family: var(--font-display);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-body);
-    text-transform: uppercase;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .primary {
-    display: none;
+    display: flex;
     align-items: center;
-    gap: var(--space-l);
+    gap: var(--space-m);
   }
 
   .primary a {
     font-family: var(--font-mono);
     font-size: var(--text-body-sm);
     color: var(--color-on-primary-subtle);
+    white-space: nowrap;
     transition: color var(--transition-base);
+  }
+
+  .label-long {
+    display: none;
   }
 
   .primary a:hover {
@@ -124,61 +118,6 @@ import Logo from "./Logo.astro";
     }
   }
 
-  .toggle {
-    color: inherit;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-  }
-
-  .icon-close {
-    display: none;
-  }
-
-  .nav[data-open] .icon-open {
-    display: none;
-  }
-
-  .nav[data-open] .icon-close {
-    display: inline-flex;
-  }
-
-  .mobile {
-    position: absolute;
-    inset: 100% 0 auto 0;
-    background-color: var(--color-primary);
-    border-block-start: 1px solid var(--color-border-on-primary);
-    padding-block: var(--space-l);
-    padding-inline:
-      max(var(--gutter-x), env(safe-area-inset-left))
-      max(var(--gutter-x), env(safe-area-inset-right));
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-  }
-
-  .mobile[hidden] {
-    display: none;
-  }
-
-  .mobile a {
-    font-family: var(--font-display);
-    font-size: var(--text-h6);
-    color: var(--color-on-primary-muted);
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-
-  .mobile .accent {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2xs);
-    color: var(--color-accent);
-  }
-
   @media (min-width: 48rem) {
     .inner {
       padding-inline:
@@ -186,57 +125,30 @@ import Logo from "./Logo.astro";
         max(var(--space-2xl), env(safe-area-inset-right));
     }
 
-    .primary {
-      display: flex;
+    .brand-name {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+      font-family: var(--font-display);
+      font-weight: var(--weight-bold);
+      font-size: var(--text-body);
+      text-transform: uppercase;
     }
 
-    .toggle {
+    .primary {
+      gap: var(--space-l);
+    }
+
+    .label-short {
       display: none;
     }
 
-    .mobile {
-      display: none !important;
+    .label-long {
+      display: inline;
     }
   }
 </style>
-
-<script>
-  const header = document.querySelector<HTMLElement>(".nav");
-  const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
-  const panel = document.getElementById("nav-mobile");
-  const inertTargets = document.querySelectorAll<HTMLElement>(
-    "main, body > footer",
-  );
-
-  function open() {
-    if (!header || !toggle || !panel) return;
-    header.setAttribute("data-open", "");
-    toggle.setAttribute("aria-expanded", "true");
-    panel.removeAttribute("hidden");
-    inertTargets.forEach((el) => el.setAttribute("inert", ""));
-    panel.querySelector<HTMLElement>("a")?.focus();
-  }
-
-  function close() {
-    if (!header || !toggle || !panel) return;
-    header.removeAttribute("data-open");
-    toggle.setAttribute("aria-expanded", "false");
-    panel.setAttribute("hidden", "");
-    inertTargets.forEach((el) => el.removeAttribute("inert"));
-    toggle.focus();
-  }
-
-  if (header && toggle && panel) {
-    toggle.addEventListener("click", () => {
-      header.hasAttribute("data-open") ? close() : open();
-    });
-
-    panel.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", close);
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && header.hasAttribute("data-open")) close();
-    });
-  }
-</script>
