@@ -4,6 +4,7 @@ import ArticleList from "../components/ArticleList.astro";
 import Icon from "../components/Icon.astro";
 import Logo from "../components/Logo.astro";
 import { getCollection } from "astro:content";
+import {ETSY_LINK} from '../constants';
 
 const articles = (await getCollection("blog"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -69,7 +70,7 @@ const volume =  year - 2026 + 1;
         Browse the Etsy shop for objects I have made, finished, and listed. Ready to ship to your door.
       </p>
       <a
-        href="https://www.etsy.com"
+        href={ETSY_LINK}
         target="_blank"
         rel="noopener noreferrer"
         class="button"
