@@ -114,8 +114,6 @@ const featured = (await getCollection("blog"))
 
   .hero h1 {
     font-size: var(--text-h1);
-    line-height: var(--leading-display);
-    letter-spacing: var(--tracking-tight);
     margin-block-end: var(--space-l);
   }
 
@@ -133,7 +131,6 @@ const featured = (await getCollection("blog"))
 
   .hero .subtitle p {
     font-size: var(--text-body-lg);
-    line-height: var(--leading-relaxed);
     color: rgb(from var(--color-primary-foreground) r g b / 0.65);
   }
 
@@ -192,8 +189,7 @@ const featured = (await getCollection("blog"))
     font-family: var(--font-display);
     font-weight: var(--weight-bold);
     font-size: var(--text-h4);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-heading);
     text-transform: uppercase;
     color: rgb(from var(--color-foreground) r g b / 0.75);
     max-width: var(--max-width-narrow);
@@ -207,7 +203,6 @@ const featured = (await getCollection("blog"))
     font-family: var(--font-mono);
     font-size: var(--text-body-sm);
     text-transform: uppercase;
-    letter-spacing: var(--tracking-widest);
     color: var(--color-muted-foreground);
   }
 
@@ -267,7 +262,6 @@ const featured = (await getCollection("blog"))
 
   .cta h2 {
     font-size: var(--text-h2);
-    line-height: var(--leading-display);
     margin-block-end: var(--space-l);
   }
 
@@ -279,7 +273,6 @@ const featured = (await getCollection("blog"))
   .cta .body {
     color: rgb(from var(--color-primary-foreground) r g b / 0.6);
     font-size: var(--text-body-lg);
-    line-height: var(--leading-relaxed);
     max-width: 32rem;
     margin-block-end: var(--space-xl);
   }

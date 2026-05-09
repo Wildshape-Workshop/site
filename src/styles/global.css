@@ -20,8 +20,7 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-heading);
   text-transform: uppercase;
 }
 
@@ -57,7 +56,6 @@ a {
   font-family: var(--font-mono);
   font-size: var(--text-body-sm);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-widest);
   color: var(--color-muted-foreground);
 }
 

@@ -17,7 +17,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: var(--leading-normal);
+  line-height: var(--leading-body);
   min-height: 100dvh;
 }
 

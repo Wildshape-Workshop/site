@@ -149,12 +149,10 @@ const revealAfterMorph = {
     color: var(--color-accent);
     font-weight: var(--weight-medium);
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
   }
 
   h1 {
     font-size: var(--text-h3);
-    line-height: var(--leading-tight);
     margin-block-end: var(--space-2xl);
   }
 
@@ -167,7 +165,6 @@ const revealAfterMorph = {
 
   .content :global(p) {
     font-size: var(--text-body);
-    line-height: var(--leading-relaxed);
     color: rgb(from var(--color-foreground) r g b / 0.8);
   }
 
@@ -176,7 +173,6 @@ const revealAfterMorph = {
   .content :global(h4) {
     text-transform: none;
     letter-spacing: normal;
-    line-height: var(--leading-tight);
     margin-block-start: var(--space-l);
   }
 
@@ -215,7 +211,6 @@ const revealAfterMorph = {
   .content :global(ul),
   .content :global(ol) {
     font-size: var(--text-body);
-    line-height: var(--leading-relaxed);
     color: rgb(from var(--color-foreground) r g b / 0.8);
     padding-inline-start: 1.25rem;
     display: flex;
@@ -240,10 +235,9 @@ const revealAfterMorph = {
     padding-inline-start: var(--space-m);
     font-family: var(--font-display);
     font-size: var(--text-h6);
-    line-height: var(--leading-snug);
+    line-height: var(--leading-heading);
     color: rgb(from var(--color-foreground) r g b / 0.85);
     text-transform: none;
-    letter-spacing: var(--tracking-snug);
   }
 
   .content :global(code) {
