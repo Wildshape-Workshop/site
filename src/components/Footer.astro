@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 const year = new Date().getFullYear();
 ---
 
@@ -6,6 +8,10 @@ const year = new Date().getFullYear();
   <span>
     © {year} Wildshape Workshop - Zwolle, the Netherlands
   </span>
+  <a href="#top" class="to-top">
+    Back to top
+    <Icon name="arrow-up" size={12} />
+  </a>
 </footer>
 
 <style>
@@ -19,6 +25,8 @@ const year = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: var(--space-s);
+    position: relative;
   }
 
   span {
@@ -27,9 +35,28 @@ const year = new Date().getFullYear();
     color: var(--color-primary-foreground);
   }
 
+  .to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-body-sm);
+    color: var(--color-on-primary-subtle);
+    transition: color var(--transition-base);
+    position: absolute;
+    bottom: var(--space-l);
+    right: var(--space-l);
+  }
+
+  .to-top:hover,
+  .to-top:focus-visible {
+    color: var(--color-primary-foreground);
+  }
+
   @media (min-width: 48rem) {
     footer {
       flex-direction: row;
+      justify-content: space-between;
       align-items: center;
     }
   }
