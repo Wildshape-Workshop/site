@@ -1,0 +1,41 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  href: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  rel?: string;
+  class?: string;
+  iconSize?: number;
+}
+
+const {
+  href,
+  target,
+  rel,
+  class: className,
+  iconSize = 12,
+  ...rest
+} = Astro.props;
+
+const isExternal = target === "_blank";
+const computedRel = isExternal && !rel ? "noopener noreferrer" : rel;
+---
+
+<a
+  href={href}
+  target={target}
+  rel={computedRel}
+  class={className}
+  {...rest}
+>
+  <slot />
+  {
+    isExternal && (
+      <>
+        <Icon name="external-link" size={iconSize} />
+        <span class="visually-hidden">(opens in new tab)</span>
+      </>
+    )
+  }
+</a>

@@ -75,6 +75,35 @@ a {
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: var(--space-2xs);
+  left: var(--space-2xs);
+  z-index: 100;
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-s);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-family: var(--font-mono);
+  font-size: var(--text-body-sm);
+  text-decoration: underline;
+  transform: translateY(-150%);
+  transition: transform var(--transition-fast);
+  --color-ring: var(--color-accent);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+main:focus-visible {
+  outline: none;
+}
+
+main {
+  scroll-margin-top: var(--nav-height);
+}
+
 @keyframes wsw-fade-up-in {
   from {
     opacity: 0;

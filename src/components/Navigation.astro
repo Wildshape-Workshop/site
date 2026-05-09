@@ -1,6 +1,7 @@
 ---
 import { ETSY_LINK } from "../constants";
 import Icon from "./Icon.astro";
+import Link from "./Link.astro";
 import Logo from "./Logo.astro";
 ---
 
@@ -13,15 +14,9 @@ import Logo from "./Logo.astro";
 
     <nav class="primary" aria-label="Primary">
       <a href="/blog">From the workshop</a>
-      <a
-        href={ETSY_LINK}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta"
-      >
+      <Link href={ETSY_LINK} target="_blank" class="cta" iconSize={12}>
         Etsy Shop
-        <Icon name="external-link" size={12} />
-      </a>
+      </Link>
     </nav>
 
     <button
@@ -39,15 +34,9 @@ import Logo from "./Logo.astro";
 
   <div id="nav-mobile" class="mobile" hidden>
     <a href="/blog">From the workshop</a>
-    <a
-      href={ETSY_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="accent"
-    >
+    <Link href={ETSY_LINK} target="_blank" class="accent" iconSize={16}>
       Etsy Shop
-      <Icon name="external-link" size={16} />
-    </a>
+    </Link>
   </div>
 </header>
 
@@ -58,6 +47,7 @@ import Logo from "./Logo.astro";
     z-index: 50;
     background-color: var(--color-primary);
     color: var(--color-primary-foreground);
+    --color-ring: var(--color-accent);
   }
 
   .inner {

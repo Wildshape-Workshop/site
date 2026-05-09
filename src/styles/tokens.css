@@ -13,7 +13,8 @@
   --color-muted-foreground: oklch(0.45 0.022 80);
   --color-accent: oklch(0.66 0.13 65);
   --color-accent-foreground: oklch(0.27 0.04 144);
-  --color-ring: oklch(0.66 0.13 65);
+  --color-accent-on-light: oklch(0.45 0.13 60);
+  --color-ring: oklch(0.45 0.13 60);
 
   /* Derived tokens. Fallbacks for browsers without relative color syntax.
      The @supports block at the bottom of this file overrides them with

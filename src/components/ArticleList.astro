@@ -5,9 +5,11 @@ import type { CollectionEntry } from "astro:content";
 interface Props {
   articles: CollectionEntry<"blog">[];
   ctaLabel?: string;
+  headingLevel?: 2 | 3;
 }
 
-const { articles, ctaLabel = "Read more" } = Astro.props;
+const { articles, ctaLabel = "Read more", headingLevel = 2 } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -28,9 +30,12 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
             <span class="tag">{article.data.tag}</span>
           </div>
           <div class="body">
-            <h3 transition:name={`article-title-${article.id}`}>
+            <Heading
+              class="title"
+              transition:name={`article-title-${article.id}`}
+            >
               {article.data.title}
-            </h3>
+            </Heading>
             <p>{article.data.excerpt}</p>
             <span class="cta">
               {ctaLabel}
@@ -82,12 +87,12 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   }
 
   .tag {
-    color: var(--color-accent);
+    color: var(--color-accent-on-light);
     font-weight: var(--weight-medium);
     text-transform: uppercase;
   }
 
-  h3 {
+  .title {
     font-family: var(--font-display);
     font-weight: var(--weight-bold);
     font-size: var(--text-h4);
@@ -96,8 +101,8 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
     transition: color var(--transition-base);
   }
 
-  a:hover h3 {
-    color: var(--color-accent);
+  a:hover .title {
+    color: var(--color-accent-on-light);
   }
 
   p {
