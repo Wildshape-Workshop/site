@@ -25,6 +25,24 @@ const dateFormatted = entry.data.date.toLocaleDateString("en-US", {
   day: "numeric",
 });
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const articleImageURL = new URL("/images/og-default.jpg", Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: entry.data.title,
+  description: entry.data.excerpt,
+  datePublished: entry.data.date.toISOString(),
+  author: { "@type": "Person", name: "Mathijs" },
+  publisher: { "@type": "Organization", name: "Wildshape Workshop" },
+  image: articleImageURL,
+  url: canonicalURL,
+  mainEntityOfPage: canonicalURL,
+};
+
+const articleSchemaJSON = JSON.stringify(articleSchema).replace(/</g, "\\u003c");
+
 const revealAfterMorph = {
   forwards: {
     old: {
@@ -61,6 +79,9 @@ const revealAfterMorph = {
   description={entry.data.excerpt}
   type="article"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={articleSchemaJSON} is:inline />
+  </Fragment>
   <article>
     <div class="inner">
       <a href="/blog" class="back" transition:animate={revealAfterMorph}>

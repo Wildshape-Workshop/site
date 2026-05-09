@@ -60,6 +60,7 @@ const imageURL = new URL(`/images/${image}`, Astro.site);
       type="font/ttf"
       crossorigin
     />
+    <slot name="head" />
     <ClientRouter />
   </head>
   <body>
