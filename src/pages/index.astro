@@ -122,15 +122,14 @@ const featured = (await getCollection("blog"))
   }
 
   .hero .subtitle {
-    border-block-start: 1px solid
-      rgb(from var(--color-primary-foreground) r g b / 0.15);
+    border-block-start: 1px solid var(--color-border-on-primary);
     padding-block-start: var(--space-m);
     max-width: 32rem;
   }
 
   .hero .subtitle p {
     font-size: var(--text-body-lg);
-    color: rgb(from var(--color-primary-foreground) r g b / 0.65);
+    color: var(--color-on-primary-muted);
   }
 
 .scroll {
@@ -173,7 +172,7 @@ const featured = (await getCollection("blog"))
     font-weight: var(--weight-bold);
     font-size: var(--text-h4);
     line-height: var(--leading-heading);
-    color: rgb(from var(--color-foreground) r g b / 0.75);
+    color: var(--color-foreground-muted);
     max-width: var(--max-width-narrow);
     margin-inline: auto;
     display: flex;
@@ -233,7 +232,7 @@ const featured = (await getCollection("blog"))
   }
 
   .cta .eyebrow {
-    color: rgb(from var(--color-primary-foreground) r g b / 0.6);
+    color: var(--color-on-primary-subtle);
     margin-block-end: var(--space-l);
   }
 
@@ -248,7 +247,7 @@ const featured = (await getCollection("blog"))
   }
 
   .cta .body {
-    color: rgb(from var(--color-primary-foreground) r g b / 0.6);
+    color: var(--color-on-primary-subtle);
     font-size: var(--text-body-lg);
     max-width: 32rem;
     margin-block-end: var(--space-xl);
@@ -271,7 +270,7 @@ const featured = (await getCollection("blog"))
   }
 
   .cta .button:hover {
-    box-shadow: 0 6px 18px rgb(26 43 26 / 0.35);
+    box-shadow: 0 6px 18px var(--color-shadow);
   }
 
   .cta .button:active {

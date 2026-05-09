@@ -96,7 +96,7 @@ import Logo from "./Logo.astro";
   .primary a {
     font-family: var(--font-mono);
     font-size: var(--text-body-sm);
-    color: rgb(from var(--color-primary-foreground) r g b / 0.6);
+    color: var(--color-on-primary-subtle);
     transition: color var(--transition-base);
   }
 
@@ -119,7 +119,7 @@ import Logo from "./Logo.astro";
   }
 
   .primary .cta:hover {
-    background-color: rgb(from var(--color-accent) r g b / 0.85);
+    background-color: var(--color-accent-hover);
     color: var(--color-accent-foreground);
   }
 
@@ -158,8 +158,7 @@ import Logo from "./Logo.astro";
     position: absolute;
     inset: 100% 0 auto 0;
     background-color: var(--color-primary);
-    border-block-start: 1px solid
-      rgb(from var(--color-primary-foreground) r g b / 0.1);
+    border-block-start: 1px solid var(--color-border-on-primary);
     padding-block: var(--space-l);
     padding-inline:
       max(var(--gutter-x), env(safe-area-inset-left))
@@ -176,7 +175,7 @@ import Logo from "./Logo.astro";
   .mobile a {
     font-family: var(--font-display);
     font-size: var(--text-h6);
-    color: rgb(from var(--color-primary-foreground) r g b / 0.8);
+    color: var(--color-on-primary-muted);
     min-height: 44px;
     display: flex;
     align-items: center;
