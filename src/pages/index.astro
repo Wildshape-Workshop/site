@@ -13,23 +13,22 @@ const featured = (await getCollection("blog"))
 <BaseLayout title="Wildshape Workshop">
   <section id="top" class="hero">
     <div class="content">
-      <h1>
-        Lovingly
-        <em>making things</em>
-        by hand &amp; machine.
-      </h1>
+        <h1>
+          Lovingly
+          <em>making things</em>
+          by hand &amp; machine.
+        </h1>
 
-      <div class="subtitle">
-        <p>
-          Wildshape Workshop is a small fabrication studio in Tilburg. We cut,
-          carve, print, and burn. Every project starts with a problem and ends
-          with something real you can hold.
-        </p>
-      </div>
-      <div class="scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <Icon name="arrow-down" size={12} />
-      </div>
+        <div class="subtitle">
+          <p>
+            Wildshape Workshop is a small fabrication studio in Zwolle, the Netherlands. Combining woodworking, 3D printing, and laser cutting to turn ideas into thoughtful, tangible objects.
+          </p>
+        </div>
+
+        <div class="scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <Icon name="arrow-down" size={12} />
+        </div>
     </div>
 
 
@@ -38,29 +37,29 @@ const featured = (await getCollection("blog"))
 
   <section class="quote">
     <blockquote>
-      &ldquo;We started in a garage with a second-hand table saw and a borrowed
-      laptop. Seven years later the garage is bigger and the laptop is new.
-      Everything else is still the same: one project, done well, at a
-      time.&rdquo;
+        <p>Born from curiosity and a desire to create beautiful, lasting memories for people. Not confined to a single discipline, but driven to explore every aspect of creation.
+        </p>
+        <p>
+        The name Wildshape Workshop is a homage to one of my first Dungeons &amp; Dragons characters, who possessed the ability to Wildshape; to transform into something else at will.
+        That’s what I strive to do, day by day.
+        </p>
     </blockquote>
-    <p class="author">— Founder, Wildshape Workshop</p>
+    <p class="author">Mathijs</p>
   </section>
 
-  {
-    featured.length > 0 && (
-      <section id="workshop" class="dispatches">
-        <header>
-          <div>
-            <p class="eyebrow">Dispatches</p>
-            <h2>From the<br />workshop</h2>
-          </div>
-          <p class="volume">Vol. I — 2026</p>
-        </header>
+  {featured.length > 0 && (
+    <section id="workshop" class="dispatches">
+      <header>
+        <div>
+          <p class="eyebrow">Dispatches</p>
+          <h2>From the<br />workshop</h2>
+        </div>
+        <p class="volume">Vol. I — 2026</p>
+      </header>
 
-        <ArticleList articles={featured} />
-      </section>
-    )
-  }
+      <ArticleList articles={featured} />
+    </section>
+    )}
 
   <section class="cta">
     <div class="inner">
@@ -134,7 +133,7 @@ const featured = (await getCollection("blog"))
     color: rgb(from var(--color-primary-foreground) r g b / 0.65);
   }
 
-  .hero .scroll {
+.scroll {
     display: flex;
     align-items: center;
     gap: var(--space-2xs);
@@ -147,22 +146,6 @@ const featured = (await getCollection("blog"))
 
   .hero .scroll :global(.icon) {
     animation: scroll-arrow-float 1.8s ease-in-out infinite;
-  }
-
-  @keyframes scroll-arrow-float {
-    0%,
-    100% {
-      transform: translateY(-3px);
-    }
-    50% {
-      transform: translateY(3px);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero .scroll :global(.icon) {
-      animation: none;
-    }
   }
 
   .hero :global(.watermark) {
@@ -190,10 +173,12 @@ const featured = (await getCollection("blog"))
     font-weight: var(--weight-bold);
     font-size: var(--text-h4);
     line-height: var(--leading-heading);
-    text-transform: uppercase;
     color: rgb(from var(--color-foreground) r g b / 0.75);
     max-width: var(--max-width-narrow);
     margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
   }
 
   .quote .author {
@@ -234,14 +219,6 @@ const featured = (await getCollection("blog"))
     font-family: var(--font-mono);
     font-size: var(--text-body-sm);
     color: var(--color-muted-foreground);
-  }
-
-  @media (min-width: 48rem) {
-    .dispatches header {
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-    }
   }
 
   .cta {
@@ -300,4 +277,29 @@ const featured = (await getCollection("blog"))
   .cta .button:active {
     transform: translateY(1px);
   }
+
+  @media (min-width: 48rem) {
+    .dispatches header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  @keyframes scroll-arrow-float {
+    0%,
+    100% {
+      transform: translateY(-3px);
+    }
+    50% {
+      transform: translateY(3px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .scroll :global(.icon) {
+      animation: none;
+    }
+  }
+
 </style>

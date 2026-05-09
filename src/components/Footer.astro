@@ -3,9 +3,8 @@ const year = new Date().getFullYear();
 ---
 
 <footer>
-  <span class="brand">Wildshape Workshop</span>
-  <span class="meta">
-    © {year} · Tilburg, Netherlands · hello@wildshapeworkshop.nl
+  <span>
+    © {year} Wildshape Workshop - Zwolle, the Netherlands
   </span>
 </footer>
 
@@ -16,35 +15,22 @@ const year = new Date().getFullYear();
     border-block-start: 1px solid
       rgb(from var(--color-primary-foreground) r g b / 0.1);
     padding-block: var(--space-l);
-    padding-inline:
-      max(var(--gutter-x), env(safe-area-inset-left))
-      max(var(--gutter-x), env(safe-area-inset-right));
+    padding-inline: max(var(--space-2xl), env(safe-area-inset-left)) max(var(--space-2xl), env(safe-area-inset-right));
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-2xs);
+    align-items: center;
   }
 
-  .brand {
-    font-family: var(--font-display);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-body-sm);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-snug);
-    color: rgb(from var(--color-primary-foreground) r g b / 0.7);
-  }
-
-  .meta {
+  span {
     font-family: var(--font-mono);
     font-size: var(--text-body-sm);
-    color: rgb(from var(--color-primary-foreground) r g b / 0.35);
+    color: var(--color-primary-foreground);
   }
 
   @media (min-width: 48rem) {
     footer {
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
     }
   }
 </style>
